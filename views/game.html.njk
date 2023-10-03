@@ -1,0 +1,31 @@
+<!-- if they said yes, render a different view file, game.html.njk. 
+This file should have a simple form that asks for the 
+name of a person,
+ a color, a noun, 
+ and an adjective. 
+ How you choose to implement those inputs is up to you, 
+ but you should feel free to mix and match. 
+ (Hint: it might be fun to try one as a drop-down menu of choices).
+  This new form should submit its data to /madlib. -->
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/madlib" id="game-input" method="POST">
+        What is your name?
+        <input type="text" name="chosenName">
+        What is your favorite color?
+        <input type="text" name="chosenColor">
+        Give me a noun
+        <input type="text" name="chosenNoun">
+        Give me an adjective
+        <input type="text" name="chosenAdjective">
+        <input type="submit">
+    </form>
+  </body>
+  </html>

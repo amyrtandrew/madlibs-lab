@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import nunjucks from 'nunjucks';
+import sample from 'lodash.sample';
 
 const app = express();
 const port = '8000';
@@ -48,5 +49,35 @@ app.get('/hello', (req, res) => {
 // Handle the form from /hello and greet the user.
 app.get('/greet', (req, res) => {
   const name = req.query.name || 'stranger';
-  res.render('greet.html.njk', { name: name });
+  const compliment = sample(COMPLIMENTS)
+  res.render('greet.html.njk', {
+     name: name,
+  compliment: compliment
+})
 });
+app.get('/game', (req, res) => {
+  console.log(req.query)
+  console.log(req.body)
+  console.log(req.params)
+  let {play} = req.query
+  if (play === `no`) {
+  res.render('goodbye.html.njk')
+  }
+  else {
+    res.render('game.html.njk')
+    }
+})
+app.post('/madlib', (req, res) => {
+  console.log(req.body)
+  let { chosenName, chosenColor, chosenNoun, chosenAdjective} = req.body
+  res.render('madlib.html.njk', {
+    name: chosenName,
+    color: chosenColor,
+    noun: chosenNoun,
+   adjective: chosenAdjective,
+  })
+})
+// Add another route to app.js to handle /madlib.
+//  It should render the template, madlib.html.njk, 
+// which should fill the person, color, noun, and adjective provided 
+// by the user into a MadLibs-style story.
